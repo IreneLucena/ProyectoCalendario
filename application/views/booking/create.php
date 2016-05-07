@@ -45,21 +45,22 @@ $(".submit").click(function(){
 		hoursParsed.push($(hours[i]).val());
 	}
 	console.log(hoursParsed);
-$.ajax("<?= base_url() ?>booking/createPost", {
-	type: "POST",
-	dataType: "JSON",
-	data: {
-		date: $("#bookingModal .date").text(),
-		hours: hoursParsed
-	},
-	complete: function(response){
-		var result=JSON.parse(response.responseText);
-		console.log(result);
-		if(result.isValid){
-			$("#bookingModal").addClass("hidden");
+	$.ajax("<?= base_url() ?>booking/createPost", {
+		type: "POST",
+		dataType: "JSON",
+		data: {
+			date: $("#bookingModal .date").text(),
+			hours: hoursParsed
+		},
+		complete: function(response){
+			var result=JSON.parse(response.responseText);
+			console.log(result);
+			if(result.isValid){
+				$("#bookingModal").addClass("hidden");
+			}
 		}
-	}
-});
+	});
+//BUSCAMOS RESERVAS
 });
 
 	$('#calendar').fullCalendar({
@@ -68,9 +69,10 @@ $.ajax("<?= base_url() ?>booking/createPost", {
 			center: 'title',
 			right: 'month,agendaWeek,agendaDay'
 		},
+		firstDay: 1,
 		editable: true,
 		dayRender: function(date, cell) {
-			$(cell).append("<div class='hour'>1</div><div class='hour'>2</div><div class='hour'>3</div><div class='hour'>4</div><div class='hour'>5</div><div class='hour'>6</div><div class='hour'>7</div>");
+			$(cell).append("<div class='spheres'></div><div class='spheres'></div><div class='spheres'></div><div class='spheres'></div><div class='spheres'></div><div class='spheres'></div><div class='spheres'></div>");
 		},
 		dayClick: function(date, jsEvent, view)
 		{

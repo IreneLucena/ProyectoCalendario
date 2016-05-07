@@ -62,7 +62,7 @@ class Booking extends CI_Controller
 	}
 
 	public function listarReservaPost(){
-		$idAula=$_REQUEST ['idAula'];
+		$idAula=2;
 		$this->load->model('Model_Reserva', 'mr');
 		$reservas= $this->mr->getTodasReservas($idAula);
 		$datos['reservas']= $reservas;
